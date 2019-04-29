@@ -62,3 +62,4 @@ typings/
 /config.json
 /oauth2_keys.json
 /package-lock.json
+/jwt.keys.json
