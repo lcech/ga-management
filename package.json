@@ -1,0 +1,22 @@
+{
+  "name": "ga-management",
+  "version": "1.0.0",
+  "description": "Manage multiple GA accounts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lcech/ga-management.git"
+  },
+  "author": "ja@lukascech.cz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lcech/ga-management/issues"
+  },
+  "homepage": "https://github.com/lcech/ga-management#readme",
+  "dependencies": {
+    "googleapis": "^39.2.0"
+  }
+}
