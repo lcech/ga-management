@@ -18,23 +18,44 @@ async function doStuff() {
     auth: client
   });
 
-  const properties = await analytics.management.webproperties.list({
-    accountId: '139263833'
+  let response = await analytics.management.webproperties.get({
+    'accountId': '139263833',
+    'webPropertyId': 'UA-139263833-2'
   });
 
-  properties.data.items.forEach((property) => {
-    console.log(property.id);
-  });
+  console.log(response.data);
 
-  for (let i = 0; i < 5; i++) {
-    let results = await analytics.management.webproperties.insert({
+  response = await analytics.management.webproperties.list({
+    'accountId': '139263833'
+  });
+  console.log(response.data);
+
+  let propertyIds = response.data.items.map((property) => { return property.id; });
+  
+  for (let i = 0; i < propertyIds.length; i++) {
+    /*let result = await analytics.management.webproperties.patch({
       'accountId': '139263833',
+      'webPropertyId': propertyIds[i],
       'resource': {
-        'name': 'Generated-Property-#' + (i + 1)
+        'name': propertyIds[i],
+        //'kind': 'analytics#webproperty',
+        'websiteUrl': 'http://plemium.demogram.cz',
+        'industryVertical': 'AUTOMOTIVE'
+      }
+    });*/
+    let result = await analytics.management.profiles.insert({
+      'accountId': '139263833',
+      'webPropertyId': propertyIds[i],
+      'resource': {
+        'name': propertyIds[i],
+        'kind': 'analytics#profile',
+        'websiteUrl': 'http://plemium.demogram.cz',
+        'industryVertical': 'AUTOMOTIVE'
       }
     });
-    console.log(results);
+    console.log(result.data);
   }
+  
 }
 
 if (module === require.main) {
